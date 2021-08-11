@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/login">
         {!user ? <Login /> : <Redirect to = "/"/>} 
         </Route>
-        { user && ( //react grafments so that we dont have to put them in a div otherwise error because of no parent component
+        { user && ( //react fragments so that we dont have to put them in a div otherwise error because of no parent component
           <> 
          <Route path="/movies">
           <Home type="movies" />
