@@ -1,0 +1,50 @@
+import "./app.scss";
+import Home from "./pages/home/Home";
+import Register from "./pages/register/Register";
+import Watch from "./pages/watch/Watch";
+import Login from "./pages/login/Login";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+
+const App = () => {
+  const user = true;
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/">
+         {user ? <Home /> : <Redirect to = "/register"/>} 
+        </Route>
+
+        <Route path="/register">
+        {!user ? <Register /> : <Redirect to = "/"/>} 
+        </Route>
+        <Route path="/login">
+        {!user ? <Login /> : <Redirect to = "/"/>} 
+        </Route>
+        { user && ( //react grafments so that we dont have to put them in a div otherwise error because of no parent component
+          <> 
+         <Route path="/movies">
+          <Home type="movies" />
+        </Route>
+        <Route path="/series">
+          <Home type="series" />
+        </Route>
+        <Route path="/watch">
+          <Watch />
+        </Route>
+        </>
+        ) 
+        }
+        
+        
+        
+      </Switch>
+    </Router>
+  );
+};
+
+export default App;
